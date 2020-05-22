@@ -22,4 +22,5 @@ eto.mean.farms <- extract(x=rast.idw.eto, y=farms, fun=mean, df=TRUE, na.rm=TRUE
 eto.mean.farms$poly_ID <- farms$id_predio
 names(eto.mean.farms)[2:3] <- c("pred.eto","id_predio")
 eto.farms <- merge(farms, eto.mean.farms, by = "id_predio")
+
 invisible(return(list(eto.mean.farms=eto.mean.farms,idw.eto=idw.eto,eto.farms=eto.farms)))}
