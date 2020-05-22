@@ -1,5 +1,5 @@
 useDynLib(PI,.registration=TRUE)
 
-importFrom("sp","gridded","spplot")
+importFrom("sp","gridded","spplot","coordinates")
 importFrom("gstat","idw")
 importFrom("raster","raster","extract")
