@@ -1,4 +1,4 @@
-ETCiwd <- function(data.eto, farms, rastera, date.start, date.end=date.start, stat.coord, plot.pred=FALSE){
+ETCiwd <- function(data.eto, farms, rastera, date.start, date.end=date.start, stat.coord){
 
 data.eto$date <- as.Date(data.eto$date)
 data.search <- subset(data.eto, date >= date.start & date <= date.end)
@@ -22,8 +22,4 @@ eto.mean.farms <- extract(x=rast.idw.eto, y=farms, fun=mean, df=TRUE, na.rm=TRUE
 eto.mean.farms$poly_ID <- farms$id_predio
 names(eto.mean.farms)[2:3] <- c("pred.eto","id_predio")
 eto.farms <- merge(farms, eto.mean.farms, by = "id_predio")
-if(plot.pred=TRUE){
-spplot(idw.eto, "var1.pred")
-spplot(eto.farms, c("pred.eto"))
-}
-invisible(return(eto.mean.farms=eto.mean.farms))}
+invisible(return(list(eto.mean.farms=eto.mean.farms,idw.eto=idw.eto,eto.farms=eto.farms)))}
