@@ -1,8 +1,8 @@
-\name{hello}
-\alias{hello}
+\name{ETCiwd}
+\alias{ETCiwd}
 \title{Hello, World!}
 \usage{
-hello()
+ETCiwd()
 }
 \description{
 Prints 'Hello, world!'.
