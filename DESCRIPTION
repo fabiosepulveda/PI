@@ -1,11 +1,21 @@
 Package: PI
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Project Ignacio
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Author: Authors@R: c(person("Francisco J", "Rodriguez-Cortes", role=c("aut","cre"), email="frrodriguezc@unal.edu.co"),
+             person("Fabio H", "Sepulveda-Murillo", role="aut", email="fhsepulveda@udem.edu.co"))
+Maintainer: Francisco J Rodriguez-Cortes <frrodriguezc@unal.edu.co>
+Depends: R (>= 3.3.0), grDevices, graphics
+Imports: gstat, raster, sp
+Suggests: knitr(>= 1.11), rmarkdown(>= 0.8.1)
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+License: GPL-3
 Encoding: UTF-8
-LazyData: true
+LazyLoad: yes
+RoxygenNote: 6.0.1
+BuildVignettes: True
+VignetteBuilder: knitr
+BugReports: https://github.com/fabiosepulveda/PI
+Author: Francisco J Rodriguez-Cortes [aut, cre],
+  Fabio H Sepulveda-Murillo [aut]

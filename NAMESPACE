@@ -1,7 +1,6 @@
-useDynLib(PI,.registration=TRUE)
-
 export("ETCiwd")
+export("plot.pi")
 
-importFrom("sp","gridded","spplot","coordinates","bbox","gridded","merge")
+importFrom("sp","spplot","coordinates","bbox","gridded","merge")
 importFrom("gstat","idw")
 importFrom("raster","raster","extract")
