@@ -1,7 +1,8 @@
 ETCiwd <- function(data.eto, farms, rastera, date.start, date.end=date.start, stat.coord){
 
-if (proj4string(farms) != proj4string(rastera)) stop("your data don't have a coordinate reference system (projected) or don't have same coordinate reference system") 
+if (proj4string(farms) != proj4string(rastera)) stop("Your data do not have same coordinate reference system proj4string(farms) != proj4string(rastera)") 
 
+names(farms) <- c("id_farms")
 data.eto$date <- as.Date(data.eto$date)
 data.search <- subset(data.eto, date >= date.start & date <= date.end)
 data.stat <- sapply(1 : length(names(table(data.search$id.sta))), function(i) 
@@ -21,8 +22,9 @@ gridded(boxgrid) <- TRUE
 idw.eto <- idw(cumsum.eto$eto ~ 1, cumsum.eto, boxgrid)
 rast.idw.eto <- raster(idw.eto)
 eto.mean.farms <- extract(x=rast.idw.eto, y=farms, fun=mean, df=TRUE, na.rm=TRUE)
-eto.mean.farms$poly_ID <- farms$id_predio
-names(eto.mean.farms)[2:3] <- c("pred.eto","id_predio")
-eto.farms <- merge(farms, eto.mean.farms, by = "id_predio")
+
+eto.mean.farms$poly_ID <- farms@data$id_farms
+names(eto.mean.farms)[2:3] <- c("pred.eto","id_farms")
+eto.farms <- merge(farms, eto.mean.farms, by = "id_farms")
 
 invisible(return(list(eto.mean.farms=eto.mean.farms,idw.eto=idw.eto,eto.farms=eto.farms)))}
