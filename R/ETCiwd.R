@@ -5,8 +5,9 @@ if (proj4string(farms) != proj4string(rastera)) stop("Your data do not have same
 names(farms) <- c("id_farms")
 data.eto$date <- as.Date(data.eto$date)
 data.search <- subset(data.eto, date >= date.start & date <= date.end)
-data.stat <- sapply(1 : length(names(table(data.search$id.sta))), function(i) 
-  subset(data.search, id.stat == names(table(data.search$id.stat))[i]), simplify = FALSE)
+id.stat <- names(table(data.search$id.stat))
+data.stat <- sapply(1 : length(id.stat), function(i) 
+  subset(data.search, id.stat == id.stat[i]), simplify = FALSE)
 cumsum.data <- sapply(1 : length(data.stat), function(i) sum(data.stat[[i]]$eto))
 x <- stat.coord[,1]
 y <- stat.coord[,2]
@@ -22,7 +23,6 @@ gridded(boxgrid) <- TRUE
 idw.eto <- idw(cumsum.eto$eto ~ 1, cumsum.eto, boxgrid)
 rast.idw.eto <- raster(idw.eto)
 eto.mean.farms <- extract(x=rast.idw.eto, y=farms, fun=mean, df=TRUE, na.rm=TRUE)
-
 eto.mean.farms$poly_ID <- farms@data$id_farms
 names(eto.mean.farms)[2:3] <- c("pred.eto","id_farms")
 eto.farms <- merge(farms, eto.mean.farms, by = "id_farms")

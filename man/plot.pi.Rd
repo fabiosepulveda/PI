@@ -1,7 +1,7 @@
 \name{plot.pi}
 \alias{plot.pi}
 \title{Hello, World!}
-\usage{plot.pi(X,...)}
+\usage{plot.pi(X, ...)}
 \arguments{
 \item{X}{Comment.}
 \item{...}{Comment.}

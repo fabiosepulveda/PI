@@ -5,8 +5,7 @@ Version: 0.1.0
 Author: Authors@R: c(person("Francisco J", "Rodriguez-Cortes", role=c("aut","cre"), email="frrodriguezc@unal.edu.co"),
              person("Fabio H", "Sepulveda-Murillo", role="aut", email="fhsepulveda@udem.edu.co"))
 Maintainer: Francisco J Rodriguez-Cortes <frrodriguezc@unal.edu.co>
-Depends: R (>= 3.3.0), grDevices, graphics, sp, raster, gstat
-Imports: gstat, raster, sp
+Depends: R (>= 3.5.0), grDevices, graphics, sp, raster, gstat
 Suggests: knitr(>= 1.11), rmarkdown(>= 0.8.1)
 Description: Morplancse about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.

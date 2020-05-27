@@ -4,7 +4,3 @@ export("plot.pi")
 import(sp)
 import(gstat)
 import(raster)
-
-importFrom("sp","spplot","coordinates","bbox","gridded","merge","proj4string")
-importFrom("gstat","idw")
-importFrom("raster","raster","extract")
