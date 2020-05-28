@@ -1,9 +1,10 @@
 Package: PI
 Type: Package
 Title: Project Ignacio
-Version: 0.1.0
+Version: 0.1.1
 Author: Authors@R: c(person("Francisco J", "Rodriguez-Cortes", role=c("aut","cre"), email="frrodriguezc@unal.edu.co"),
-             person("Fabio H", "Sepulveda-Murillo", role="aut", email="fhsepulveda@udem.edu.co"))
+             person("Fabio H", "Sepulveda-Murillo", role="aut", email="fhsepulveda@udem.edu.co"),
+             person("Jose I", "Agudelo-Otalvaro", role="aut", email="jiagudel@unal.edu.co")
 Maintainer: Francisco J Rodriguez-Cortes <frrodriguezc@unal.edu.co>
 Depends: R (>= 3.5.0), grDevices, graphics, sp, raster, gstat
 Suggests: knitr(>= 1.11), rmarkdown(>= 0.8.1)
@@ -17,4 +18,5 @@ BuildVignettes: True
 VignetteBuilder: knitr
 BugReports: https://github.com/fabiosepulveda/PI
 Author: Francisco J Rodriguez-Cortes [aut, cre],
-  Fabio H Sepulveda-Murillo [aut]
+  Fabio H Sepulveda-Murillo [aut],
+  Jose I Agudelo Otalvaro [aut]
