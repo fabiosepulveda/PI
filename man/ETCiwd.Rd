@@ -1,7 +1,7 @@
 \name{ETCiwd}
 \alias{ETCiwd}
 \title{Title ETC}
-\usage{ETCiwd(data.eto, farms, rastera, date.start, date.end=date.start, stat.coord)}
+\usage{ETOiwd(data.eto, farms, rastera, date.start, date.end=date.start, stat.coord)}
 \arguments{
 \item{data.eto}{Comment.}
 \item{farms}{Comment.}

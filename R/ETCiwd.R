@@ -1,30 +1,17 @@
-ETCiwd <- function(data.eto, farms, rastera, date.start, date.end=date.start, stat.coord){
+ETCiwd <- function(data.crop, data.eto, farma, rastera, cons.date, stat.coord){
 
-if (proj4string(farms) != proj4string(rastera)) stop("Your data do not have same coordinate reference system proj4string(farms) != proj4string(rastera)") 
-
-names(farms) <- c("id_farms")
+data.crop$date.crop <- as.Date(data.crop$date.crop)
 data.eto$date <- as.Date(data.eto$date)
-data.search <- subset(data.eto, date >= date.start & date <= date.end)
-data.stat <- sapply(1 : length(names(table(data.search$id.sta))), function(i) 
-  subset(data.search, id.stat == names(table(data.search$id.stat))[i]), simplify = FALSE)
-cumsum.data <- sapply(1 : length(data.stat), function(i) sum(data.stat[[i]]$eto))
-x <- stat.coord[,1]
-y <- stat.coord[,2]
-cumsum.eto <- data.frame(names(table(data.search$id.sta)),x,y,cumsum.data)
-names(cumsum.eto) <- c("id.stat","x","y","eto")
-coordinates(cumsum.eto) <- ~ x + y
-box <- bbox(rastera)
-box1 <- seq(box[1,1], box[1,2],length=500)
-box2 <- seq(box[2,1], box[2,2],length=500)
-boxgrid <- expand.grid(box1,box2)
-coordinates(boxgrid) <- ~ Var1 + Var2
-gridded(boxgrid) <- TRUE
-idw.eto <- idw(cumsum.eto$eto ~ 1, cumsum.eto, boxgrid)
-rast.idw.eto <- raster(idw.eto)
-eto.mean.farms <- extract(x=rast.idw.eto, y=farms, fun=mean, df=TRUE, na.rm=TRUE)
+farms.crop.cons <- subset(data.crop, data.crop$date.crop <= cons.date)
+farms.name <- names(table(farms.crop.cons$farms.crop))
+farms.crop.date <- sapply(1:length(farms.name), function(i) subset(farms.crop.cons, 
+                   farms.crop.cons$farms.crop == farms.name[i]), simplify = FALSE)
+farms.date.name.crop <- sapply(1:length(farms.name), function(i) sapply(1:length(names(table(farms.crop.date[[i]]$name.crop))), 
+       function(j) subset(farms.crop.date[[i]],farms.crop.date[[i]]$name.crop==names(table(farms.crop.date[[i]]$name.crop)[j])),
+       simplify = FALSE))
+farms.date.crop <- sapply(1:length(farms.name), function(i) sapply(1:length(names(table(farms.crop.date[[i]]$name.crop))), 
+    function(j) farms.date.name.crop[[i]][[j]][which(farms.date.name.crop[[i]][[j]]$date.crop==max(farms.date.name.crop[[i]][[j]]$date.crop)),],
+    simplify = FALSE))
 
-eto.mean.farms$poly_ID <- farms@data$id_farms
-names(eto.mean.farms)[2:3] <- c("pred.eto","id_farms")
-eto.farms <- merge(farms, eto.mean.farms, by = "id_farms")
-
-invisible(return(list(eto.mean.farms=eto.mean.farms,idw.eto=idw.eto,eto.farms=eto.farms)))}
+ETO <- ETOiwd(data.eto=data.eto, farms=farms, rastera=rastera, date.start=cons.date, stat.coord=coord.stat)
+return(ETO)}

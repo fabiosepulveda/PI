@@ -1,10 +1,21 @@
-\name{plot.pi}
-\alias{plot.pi}
-\title{Hello, World!}
-\usage{plot.pi(X, ...)}
+\name{ETOiwd}
+\alias{ETOiwd}
+\title{Title ETO}
+\usage{ETOiwd(data.eto, farms, rastera, date.start, date.end=date.start, stat.coord)}
 \arguments{
-\item{X}{Comment.}
-\item{...}{Comment.}
+\item{data.eto}{Comment.}
+\item{farms}{Comment.}
+\item{rastera}{Comment.}
+\item{date.start}{Comment.}
+\item{date.end}{Comment.}
+\item{stat.coord}{Comment.}
+}
+\value{
+A list containing:
+
+\item{eto.mean.farms}{Comment.}
+\item{idw.eto}{Comment.}
+\item{eto.farms}{Comment.}
 }
 \description{
 Prints 'Hello, world!'.
